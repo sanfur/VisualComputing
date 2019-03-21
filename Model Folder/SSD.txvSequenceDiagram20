@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="Vam8ynkilj95ejprv69g1">
+		<property name="$metaclass" value="SequenceDiagram20"/>
+		<property name="$referencedInteractionUin" value="design:node:::-yrgd8eilj95ek72uaokq"/>
+		<property name="$name" value="SSD"/>
+		<property name="__options" value="option.nlayout.recursive=true"/>
+		<reference referencedUin="design:node:::-yrgd8eilj95ek72uaokq">
+			<property name="$shortcutReference" value="true"/>
+			<property name="bounds" value="55,15,791,491"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="bounds_setted_by_user" value="true"/>
+			<reference referencedUin="design:node:::-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+				<property name="bounds" value="105,5,60,438"/>
+				<property name="location_set_by_user" value="true"/>
+				<reference referencedUin="design:node:::l2gqtvilj964vtcfvimd:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+					<property name="bounds" value="20,65,20,59"/>
+					<property name="location_set_by_user" value="true"/>
+					<property name="foreground_color" value="250,250,250"/>
+					<property name="background_color" value="240,240,240"/>
+					<property name="3Dlook" value="No"/>
+					<reference referencedUin="sd20_message_container:design:node:::l2gqtvilj964vtcfvimd:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+						<property name="bounds" value="0,0,0,0"/>
+						<reference referencedUin="sd20_message|1|call|80(design:node:::l2gqtvilj964vtcfvimd:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq)">
+							<property name="sourceAnchor" value="210,172"/>
+							<property name="targetAnchor" value="510,172"/>
+							<property name="location_set_by_user" value="true"/>
+							<reference referencedUin="sd20_message_label:sd20_message|1|call|80(design:node:::l2gqtvilj964vtcfvimd:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq)">
+								<property name="bounds" value="210,157,79,15"/>
+							</reference>
+						</reference>
+						<reference referencedUin="sd20_message|1|reply|80(design:node:::l2gqtvilj964vtcfvimd:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq)">
+							<property name="sourceAnchor" value="510,230"/>
+							<property name="targetAnchor" value="210,230"/>
+							<reference referencedUin="sd20_message_label:sd20_message|1|reply|80(design:node:::l2gqtvilj964vtcfvimd:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq)">
+								<property name="bounds" value="210,215,66,15"/>
+							</reference>
+						</reference>
+					</reference>
+				</reference>
+				<reference referencedUin="design:node:::7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+					<property name="bounds" value="20,163,20,143"/>
+					<property name="location_set_by_user" value="true"/>
+					<reference referencedUin="design:link:::ieje0rilj9i1v6-nyw8hj:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+						<property name="sourceAnchor" value="200,270"/>
+						<property name="targetAnchor" value="200,270"/>
+					</reference>
+					<reference referencedUin="design:node:::7x5rzxilj9i1v81v05x8:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+						<property name="bounds" value="0,77,20,66"/>
+						<property name="location_set_by_user" value="true"/>
+						<reference referencedUin="design:node:::l2gqtvilj9iea6av4rcl:7x5rzxilj9i1v81v05x8:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+							<property name="bounds" value="0,26,20,24"/>
+							<property name="location_set_by_user" value="true"/>
+							<property name="foreground_color" value="250,250,250"/>
+							<property name="background_color" value="240,240,240"/>
+							<reference referencedUin="sd20_message_container:design:node:::l2gqtvilj9iea6av4rcl:7x5rzxilj9i1v81v05x8:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+								<property name="bounds" value="0,0,0,0"/>
+								<reference referencedUin="sd20_message|1|call|122(design:node:::l2gqtvilj9iea6av4rcl:7x5rzxilj9i1v81v05x8:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq)">
+									<property name="sourceAnchor" value="210,373"/>
+									<property name="targetAnchor" value="510,373"/>
+									<property name="location_set_by_user" value="true"/>
+									<reference referencedUin="sd20_message_label:sd20_message|1|call|122(design:node:::l2gqtvilj9iea6av4rcl:7x5rzxilj9i1v81v05x8:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq)">
+										<property name="bounds" value="210,358,22,15"/>
+									</reference>
+								</reference>
+							</reference>
+						</reference>
+						<reference referencedUin="design:link:::ieje0rilj9i1v9-zh9w2c:7x5rzxilj9i1v81v05x8:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+							<property name="sourceAnchor" value="100,20"/>
+							<property name="targetAnchor" value="100,20"/>
+						</reference>
+					</reference>
+					<reference referencedUin="design:node:::7x5rzxilj9i1v7cud47d:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+						<property name="bounds" value="0,0,20,77"/>
+						<property name="location_set_by_user" value="true"/>
+						<reference referencedUin="design:link:::ieje0rilj9i1v8-5byho:7x5rzxilj9i1v7cud47d:7x5rzxilj9i1v5c1d2y7:-y8nsowilj95pg8jvsijp:-yrgd8eilj95ek72uaokq">
+							<property name="sourceAnchor" value="100,20"/>
+							<property name="targetAnchor" value="100,20"/>
+						</reference>
+					</reference>
+				</reference>
+			</reference>
+			<reference referencedUin="design:node:::-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+				<property name="bounds" value="425,5,60,438"/>
+				<property name="location_set_by_user" value="true"/>
+				<reference referencedUin="design:node:::c87hzvilj964vv-6wzusd:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+					<property name="bounds" value="20,65,20,59"/>
+					<property name="location_set_by_user" value="true"/>
+					<property name="bounds_setted_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="design:node:::7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+					<property name="bounds" value="20,163,20,143"/>
+					<property name="location_set_by_user" value="true"/>
+					<reference referencedUin="design:node:::7x5rzxilj9iea9zmny3:7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+						<property name="bounds" value="0,77,20,66"/>
+						<property name="location_set_by_user" value="true"/>
+						<reference referencedUin="design:link:::ieje0rilj9ieaa-i1wg3k:7x5rzxilj9iea9zmny3:7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+							<property name="sourceAnchor" value="100,20"/>
+							<property name="targetAnchor" value="100,20"/>
+						</reference>
+						<reference referencedUin="design:node:::c87hzvilj9ieaa-wvxf7x:7x5rzxilj9iea9zmny3:7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+							<property name="bounds" value="0,26,20,24"/>
+							<property name="location_set_by_user" value="true"/>
+						</reference>
+					</reference>
+					<reference referencedUin="design:link:::ieje0rilj9iea8-4nsnkv:7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+						<property name="sourceAnchor" value="520,270"/>
+						<property name="targetAnchor" value="520,270"/>
+					</reference>
+					<reference referencedUin="design:node:::7x5rzxilj9iea82qvw6a:7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+						<property name="bounds" value="0,0,20,77"/>
+						<property name="location_set_by_user" value="true"/>
+						<reference referencedUin="design:link:::ieje0rilj9iea9ou5yky:7x5rzxilj9iea82qvw6a:7x5rzxilj9iea7svocjs:-y8nsowilj95x262nizxv:-yrgd8eilj95ek72uaokq">
+							<property name="sourceAnchor" value="100,20"/>
+							<property name="targetAnchor" value="100,20"/>
+						</reference>
+					</reference>
+				</reference>
+			</reference>
+			<reference referencedUin="design:node:::7chx8lilj9i1v5-c91433:-yrgd8eilj95ek72uaokq">
+				<property name="background_color" value="237,232,233"/>
+				<property name="bounds" value="115,228,360,143"/>
+				<reference referencedUin="design:node:::-yp8yhilj9i1v7-pnt1cl:7chx8lilj9i1v5-c91433:-yrgd8eilj95ek72uaokq">
+					<property name="bounds" value="0,20,360,57"/>
+				</reference>
+				<reference referencedUin="design:node:::-yp8yhilj9i1v8h5blgt:7chx8lilj9i1v5-c91433:-yrgd8eilj95ek72uaokq">
+					<property name="bounds" value="0,77,360,66"/>
+				</reference>
+			</reference>
+		</reference>
+	</view>
+	<link uin="ieje0rilj95el875a9kz">
+		<property name="$metaclass" value="SequenceDiagram20_LinkToInteraction"/>
+		<participant referencedUin="design:view:::Vam8ynkilj95ejprv69g1" role="Client"></participant>
+		<participant referencedUin="design:node:::-yrgd8eilj95ek72uaokq" role="Supplier"></participant>
+	</link>
+</nodeSet>
