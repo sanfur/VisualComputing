@@ -17,20 +17,51 @@ public class BezierCurve extends Curve {
 		super(points);
 		calculateCurve(points);
 	}
-
-
+	
 	public void calculateCurve(List<Point2D> points) {
+		
+	    int npts = (b.Length) / 2;
+	    int icount, jcount;
+	    double step, t;
 
+	    // Calculate points on curve
+
+	    icount = 0;
+	    t = 0;
+	    step = (double)1.0 / (cpts - 1);
+
+	    for (int i1 = 0; i1 != cpts; i1++)
+	    { 
+	        if ((1.0 - t) < 5e-6) 
+	            t = 1.0;
+
+	        jcount = 0;
+	        p[icount] = 0.0;
+	        p[icount + 1] = 0.0;
+	        for (int i = 0; i != npts; i++)
+	        {
+	            double basis = Bernstein(npts - 1, i, t);
+	            p[icount] += basis * b[jcount];
+	            p[icount + 1] += basis * b[jcount + 1];
+	            jcount = jcount +2;
+	        }
+
+	        icount += 2;
+	        t += step;
+	    }
+		
+		
+		
+//		this.curvePoints.add(new Point2D.Float((int) x, (int) y));
+		
 //		bezierTryOne(points);
 //		for(int i = 0; i < bPoints.length; i++) {
 //			
 //			this.curvePoints.add(new Point2D.Float((int) bPoints[i].getX(), (int) bPoints[i].getY()));
 //		}
 		
-		bezierTryTwo();
-		
 		// Punkt zum  Zeichnungspolygon hinzu: 
-//			 this.curvePoints.add(new Point2D.Float((int) px[0], (int) py[0]));
+//		this.curvePoints.add(new Point2D.Float((int) px[0], (int) py[0]));
 	}
 
 	@Override
@@ -41,25 +72,17 @@ public class BezierCurve extends Curve {
 			g2d.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(), (int) p2.getY());
 		}
 	}
+		
+	public int fact(int n) {
+	    int fact = 1;
+	    for (int i = 1; i <= n; i++) {
+	        fact *= i;
+	    }
+	    return fact;
+	}
 	
-	public void bezierTryTwo() {
-		Point p1,p2,p3,p4;
-	    p1=points[0].getPosition();
-	    p2=points[1].getPosition();
-	    p3=points[2].getPosition();
-	    p4=points[3].getPosition();
-	    double x,y;
-
-	    x = p1.x*(Math.pow(-t,3)+3*Math.pow(t,2)-3*t+1)
-	      +3*p2.x*t*(Math.pow(t,2)-2*t+1)
-	      +3*p3.x*Math.pow(t,2)*(1-t)+p4.x*Math.pow(t,3);
-
-
-	    y = p1.y*(Math.pow(-t,3)+3*Math.pow(t,2)-3*t+1)
-	      +3*p2.y*t*(Math.pow(t,2)-2*t+1)
-	      +3*p3.y*Math.pow(t,2)*(1-t)+p4.y*Math.pow(t,3);
-
-	    return new Point((int)Math.round(x),(int)Math.round(y));
+	public double  bernstein(double t, int n, int i){
+	   return (fact(n) / (fact(i) * fact(n-i))) * Math.pow(1-t, n-i) * Math.pow(t, i);
 	}
 	
 	public void bezierTryOne(List<Point2D> points) {
