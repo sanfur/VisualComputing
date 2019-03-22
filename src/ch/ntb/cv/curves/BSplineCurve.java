@@ -10,16 +10,54 @@ import ch.ntb.math.DoubleComparison;
 
 public class BSplineCurve extends Curve {
 	protected double deltaT = 1. / 16.;
-	protected int k = 3;
 	private int[] tVector;
 
 	public BSplineCurve(List<Point2D> points) {
 		super(points);
-		calculateCurve();
+		// Rekursive
+		calculateCurveRec();
+		
+		// Iterativ
+		calculateCurveIt();
 	}
 
+	public void calculateCurveIt() {
+		// Initialisieren
+		int[] knotVector;
+		int n = controlPoints.size() - 1;
+		int k = 3;
+		// Plus 1, da 0 miteinbezogen wird in der Grösse des Knotenvektors.
+		int size = n + k + 1;
+		knotVector = new int[size];
+		
+		// Knotenvektor mit Werten füllen.
+		for(int j = 0; j < size; j++) {
+			if(j < k) {
+				knotVector[j] = 0;
+			} 
+			else if(k <= j && j <= n) {
+				knotVector[j] = j - k + 1;
+			}
+			else if(j > n) {
+				knotVector[j] = n - k + 2;
+			}
+		}
+		
+		for(double t = 0; t <= 1; t += deltaT) {
+			
+			for(int i = 0; i <= n; i++) {
+				
+			}
+		}
+		
+		
+		
+		
+	}
 
-	public void calculateCurve() {
+	public void calculateCurveRec() {
+		int k = 3;
+		
 		// Knotenvektor berechnen
 		int n = controlPoints.size() - 1;
 		int size = n + k+1;
@@ -32,7 +70,7 @@ public class BSplineCurve extends Curve {
 			} else { // j > n
 				tVector[j] = n - k + 2;
 			}
-		}
+		}				
 
 		// B-Spline-Punkte mithilfe der Gewichtungspolynome berechnen
 //		for(double t = 0; t <= 1; t += deltaT) {

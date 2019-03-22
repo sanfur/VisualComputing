@@ -8,11 +8,9 @@ import java.util.List;
 public class BezierCurve extends Curve {
 	
 	protected final double deltaT = 1. / 16.;
-	private List<Point2D> controlPoints;
 	
 	public BezierCurve(List<Point2D> points) {
 		super(points);
-		controlPoints = points;
 		calculateCurve();
 	}
 	
@@ -38,7 +36,6 @@ public class BezierCurve extends Curve {
 				else
 					//Work with newly created Points f.e. P01 (P0 and P1 used before)
 				{
-									
 					for(int pCount = 0; pCount < controlPoints.size() - 1 - iLevel ; pCount++)
 					{	
 						px[pCount] = (1 - t) * px[pCount] + t * px[pCount + 1];
@@ -60,15 +57,15 @@ public class BezierCurve extends Curve {
 		}
 	}
 		
-	public int fact(int n) {
-	    int fact = 1;
-	    for (int i = 1; i <= n; i++) {
-	        fact *= i;
-	    }
-	    return fact;
-	}
-	
-	public double  bernstein(double t, int n, int i){
-	   return (fact(n) / (fact(i) * fact(n-i))) * Math.pow(1-t, n-i) * Math.pow(t, i);
-	}
+//	public int fact(int n) {
+//	    int fact = 1;
+//	    for (int i = 1; i <= n; i++) {
+//	        fact *= i;
+//	    }
+//	    return fact;
+//	}
+//	
+//	public double  bernstein(double t, int n, int i){
+//	   return (fact(n) / (fact(i) * fact(n-i))) * Math.pow(1-t, n-i) * Math.pow(t, i);
+//	}
 }
