@@ -2,66 +2,53 @@ package ch.ntb.cv.curves;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BezierCurve extends Curve {
 	
 	protected final double deltaT = 1. / 16.;
-	  private Point2D[] bPoints;
-	  private Point2D[] controlPoints;
+	private List<Point2D> controlPoints;
 	
 	public BezierCurve(List<Point2D> points) {
 		super(points);
-		calculateCurve(points);
+		controlPoints = points;
+		calculateCurve();
 	}
 	
-	public void calculateCurve(List<Point2D> points) {
+	public void calculateCurve() {
 		
-	    int npts = (b.Length) / 2;
-	    int icount, jcount;
-	    double step, t;
+		for (double t = 0; t <= 1; t += deltaT)
+		{
+			double px[] = new double[controlPoints.size() - 1];
+			double py[] = new double[controlPoints.size() - 1];
+						
+			for (int iLevel = 0; iLevel < controlPoints.size() - 1; iLevel ++)
+			{
+				if (iLevel == 0)
+					//Work with Points
+				{
+					for(int pCount = 0; pCount < controlPoints.size() - 1 ; pCount++)
+					{	
+						px[pCount] = (1 - t) * controlPoints.get(pCount).getX() + t * controlPoints.get(pCount+1).getX();
+						py[pCount] = (1 - t) * controlPoints.get(pCount).getY() + t * controlPoints.get(pCount+1).getY();
+					}
 
-	    // Calculate points on curve
-
-	    icount = 0;
-	    t = 0;
-	    step = (double)1.0 / (cpts - 1);
-
-	    for (int i1 = 0; i1 != cpts; i1++)
-	    { 
-	        if ((1.0 - t) < 5e-6) 
-	            t = 1.0;
-
-	        jcount = 0;
-	        p[icount] = 0.0;
-	        p[icount + 1] = 0.0;
-	        for (int i = 0; i != npts; i++)
-	        {
-	            double basis = Bernstein(npts - 1, i, t);
-	            p[icount] += basis * b[jcount];
-	            p[icount + 1] += basis * b[jcount + 1];
-	            jcount = jcount +2;
-	        }
-
-	        icount += 2;
-	        t += step;
-	    }
-		
-		
-		
-//		this.curvePoints.add(new Point2D.Float((int) x, (int) y));
-		
-//		bezierTryOne(points);
-//		for(int i = 0; i < bPoints.length; i++) {
-//			
-//			this.curvePoints.add(new Point2D.Float((int) bPoints[i].getX(), (int) bPoints[i].getY()));
-//		}
-		
-		// Punkt zum  Zeichnungspolygon hinzu: 
-//		this.curvePoints.add(new Point2D.Float((int) px[0], (int) py[0]));
+				}
+				else
+					//Work with newly created Points f.e. P01 (P0 and P1 used before)
+				{
+									
+					for(int pCount = 0; pCount < controlPoints.size() - 1 - iLevel ; pCount++)
+					{	
+						px[pCount] = (1 - t) * px[pCount] + t * px[pCount + 1];
+						py[pCount] = (1 - t) * py[pCount] + t * py[pCount + 1];
+					}
+				}
+			}
+			System.out.println("New curvepoint ["+ t +"]: (" + px[0] + " / " + py[0] + ")" );
+			this.curvePoints.add(new Point2D.Float((int) px[0], (int) py[0]));
+		}
 	}
 
 	@Override
@@ -83,65 +70,5 @@ public class BezierCurve extends Curve {
 	
 	public double  bernstein(double t, int n, int i){
 	   return (fact(n) / (fact(i) * fact(n-i))) * Math.pow(1-t, n-i) * Math.pow(t, i);
-	}
-	
-	public void bezierTryOne(List<Point2D> points) {
-		
-		int n = points.size();
-		if(n < 3) {
-			return;
-		}
-		
-		bPoints = new Point[2 * (n - 2)];
-	
-		// Set Point A,B,C
-		double paX, paY;
-		double pbX = points.get(0).getX();
-		double pbY = points.get(0).getY();
-		double pcX = points.get(1).getX();
-		double pcY = points.get(1).getY();
-		
-		for(int i = 0; i < n - 2; i++) {
-			paX = pbX;
-			paY = pbY;
-			pbX = pcX;
-			pbY = pcY;
-			pcX = points.get(i + 2).getX();
-			pcY = points.get(i + 2).getY();
-			
-			// Vector AB
-			double abX = pbX - paX;
-			double abY = pbY - paY;
-			// Vector AC
-			double acX = pcX - paX;
-			double acY = pcY - paY;
-			// Length of AC
-			double lac = Math.sqrt(acX * acX + acY * acY);
-			acX = acX / lac;
-			acY = acY / lac;
-			
-			double proj = abX * acX + abY * acY;
-			proj = proj < 0 ? -proj : proj;
-			
-			double apX = proj * acX;
-			double apY = proj * acY;
-			
-			 double p1X = pbX - deltaT * apX;
-			 double p1Y = pbY - deltaT * apY;
-			 bPoints[2 * i] = new Point((int) p1X, (int) p1Y);
-			
-			 acX = -acX;
-			 acY = -acY;
-			 double cbX = pbX - pcX;
-			 double cbY = pbY - pcY;
-			 proj = cbX * acX + cbY * acY;
-			 proj = proj < 0 ? -proj : proj;
-			 apX = proj * acX;
-			 apY = proj * acY;
-			
-			 double p2X = pbX - deltaT * apX;
-			 double p2Y = pbY - deltaT * apY;
-			 bPoints[2 * i + 1] = new Point((int) p2X, (int) p2Y);
-		}
 	}
 }
