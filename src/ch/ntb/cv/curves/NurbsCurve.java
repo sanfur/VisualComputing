@@ -77,8 +77,74 @@ public class NurbsCurve extends Curve {
 	}
 
 	public void calculateCurve() {
-	//ToDo
+
+		// Initialize
+		int numberOfPoints = controlPoints.size();
+		int numberOfCurveSections = 3;
+		double[] knotVector = knots;
 		
+		// Calculate NURBS
+		for(double t = knotVector[0]; t < knotVector[knotVector.length-1]; t += deltaT) {
+			
+			double[] scalarValue = new double[numberOfPoints + numberOfCurveSections - 1];
+			// hi * Nik(t)
+			double nurbsDenominator = 0;
+			int numberOfiIteration = numberOfPoints + numberOfCurveSections - 1;
+			// k\i table
+			for(int k = 1; k <= numberOfCurveSections; k++) {
+				for(int i = 0; i < numberOfiIteration; i++) {
+					
+					// first row is handled differently
+					if(k == 1) {
+						if(knotVector[i] <= t && t < knotVector[i + 1]) {
+							scalarValue[i] = 1;
+						}
+						else {
+							scalarValue[i] = 0;
+						}
+					}
+
+					// Calculate polynom weight function
+					else {
+						double denominatorFirstTerm = (knotVector[i + k - 1] - knotVector[i]);
+						double denominatorSecondTerm = (knotVector[i + k] - knotVector[i + 1]);
+						double firstTermValue;
+						double secondTermValue;
+						
+						// Handle division by zero.
+						if(denominatorFirstTerm == 0) {
+							firstTermValue = 0; 
+						} else {
+							firstTermValue = ((t - knotVector[i])/denominatorFirstTerm) * scalarValue[i];
+						}
+						if(denominatorSecondTerm == 0) {
+							secondTermValue = 0;
+						} else {
+							secondTermValue = ((knotVector[i + k] - t)/denominatorSecondTerm) * scalarValue[i + 1];
+						}						
+						scalarValue[i] = firstTermValue + secondTermValue; 
+						
+						// As soon as B-spline calculation finishes, weights are getting involved
+						if(k != numberOfCurveSections) continue;
+						// The denominator of the R-function stays the same, at every run, therefore its calculated here.
+						nurbsDenominator += weights[i] * scalarValue[i];
+					}
+				}
+				numberOfiIteration--;
+			}
+			// Create curve vector
+			double x = 0;
+			double y = 0;
+			
+			for(int i = 0; i < numberOfPoints; i++) {
+				Point2D currentPoint = controlPoints.get(i);
+				x += currentPoint.getX() * (weights[i] * scalarValue[i])/nurbsDenominator;
+				y += currentPoint.getY() * (weights[i] * scalarValue[i])/nurbsDenominator;
+			}
+			System.out.println("["+ t +"]: (" + x + " / " + y + ")" );
+			this.curvePoints.add(new Point2D.Double(x, y));
+		}
+		curvePoints.add(controlPoints.get(controlPoints.size()-1));
 	}
 
 	@Override

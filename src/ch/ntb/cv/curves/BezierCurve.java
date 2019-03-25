@@ -11,6 +11,7 @@ public class BezierCurve extends Curve {
 	
 	public BezierCurve(List<Point2D> points) {
 		super(points);
+		System.out.println("Bezier:");
 		calculateCurve();
 	}
 	
@@ -43,7 +44,7 @@ public class BezierCurve extends Curve {
 					}
 				}
 			}
-			System.out.println("New curvepoint ["+ t +"]: (" + px[0] + " / " + py[0] + ")" );
+			System.out.println("["+ t +"]: (" + px[0] + " / " + py[0] + ")" );
 			this.curvePoints.add(new Point2D.Float((int) px[0], (int) py[0]));
 		}
 	}
