@@ -141,7 +141,8 @@ public class NurbsCurve extends Curve {
 				x += currentPoint.getX() * (weights[i] * scalarValue[i])/nurbsDenominator;
 				y += currentPoint.getY() * (weights[i] * scalarValue[i])/nurbsDenominator;
 			}
-			System.out.println("["+ t +"]: (" + x + " / " + y + ")" );
+			
+			System.out.println("["+ t +"] | (" + x + " / " + y + ")" );
 			this.curvePoints.add(new Point2D.Double(x, y));
 		}
 		curvePoints.add(controlPoints.get(controlPoints.size()-1));
